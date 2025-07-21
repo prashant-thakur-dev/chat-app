@@ -33,6 +33,7 @@ function App() {
         messages: updatedMessages,
       },
     }));
+    
 
     setIsTyping(true);
 
