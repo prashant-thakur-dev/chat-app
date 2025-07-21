@@ -22,8 +22,12 @@ function App() {
 
   const currentMessages = chats[currentChatId].messages;
 
+  // Add this helper function at the top of App.jsx
+  const formatTime = () =>
+    new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+
   const handleSend = (msg) => {
-    const userMessage = { text: msg, sender: "user" };
+    const userMessage = { text: msg, sender: "user", timestamp: formatTime() };
     const updatedMessages = [...currentMessages, userMessage];
 
     setChats((prev) => ({
@@ -33,7 +37,6 @@ function App() {
         messages: updatedMessages,
       },
     }));
-    
 
     setIsTyping(true);
 
@@ -47,6 +50,7 @@ function App() {
       const botMessage = {
         text: botReplies[Math.floor(Math.random() * botReplies.length)],
         sender: "bot",
+        timestamp: formatTime(),
       };
 
       setChats((prev) => ({
@@ -95,7 +99,10 @@ function App() {
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
         } md:translate-x-0 md:flex-shrink-0 shadow-lg`}
       >
-        <Sidebar currentChatId={currentChatId} onSelectChat={handleChatSwitch} />
+        <Sidebar
+          currentChatId={currentChatId}
+          onSelectChat={handleChatSwitch}
+        />
       </aside>
 
       {/* Main Chat Area */}

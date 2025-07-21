@@ -25,7 +25,12 @@ const ChatWindow = ({ messages, isTyping, title = "Chat" }) => {
       )}
 
       {messages.map((msg, idx) => (
-        <ChatMessage key={idx} message={msg.text} sender={msg.sender} />
+        <ChatMessage
+          key={`${msg.sender}-${msg.text}-${idx}`}
+          message={msg.text}
+          sender={msg.sender}
+          timestamp={msg.timestamp}
+        />
       ))}
 
       {isTyping && (
