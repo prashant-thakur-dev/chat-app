@@ -15,26 +15,22 @@ const MessageInput = ({ onSend }) => {
     }
   };
 
-  const handleKeyPress = (e) => {
-    if (e.key === "Enter") {
-      handleSend();
-    }
-  };
-
   return (
-    <div className="flex p-4 bg-white border-t shadow-md sticky bottom-0 z-10">
+    <div className="flex p-4 bg-white dark:bg-gray-800 border-t dark:border-gray-700 shadow-inner sticky bottom-0 z-10">
       <input
         ref={inputRef}
         type="text"
         value={input}
         onChange={(e) => setInput(e.target.value)}
-        onKeyPress={handleKeyPress}
-        placeholder="Type a message"
-        className="flex-1 px-4 py-2 rounded-full border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all"
+        onKeyDown={(e) => e.key === "Enter" && handleSend()}
+        placeholder="Type a message..."
+        aria-label="Message input"
+        className="flex-1 px-4 py-2 rounded-full border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
       />
       <button
         onClick={handleSend}
-        className="ml-2 px-4 py-2 bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-full shadow hover:scale-105 active:scale-95 transition"
+        aria-label="Send message"
+        className="ml-2 px-4 py-2 rounded-full bg-blue-600 text-white hover:bg-blue-700 active:scale-95 transition shadow"
       >
         🚀
       </button>

@@ -1,20 +1,24 @@
-const Sidebar = ({ onSelectChat }) => {
+const Sidebar = ({ currentChatId, onSelectChat }) => {
+  const chatList = [
+    { id: "hackathon-bot", name: "Hackathon Bot" },
+    { id: "john-doe", name: "John Doe" },
+  ];
+
   return (
-    <div className="h-full w-full p-4 text-white bg-gray-800/80 backdrop-blur-md">
+    <div className="h-full w-full p-4 bg-gray-800 text-white">
       <h2 className="text-xl font-bold mb-6">💬 Chats</h2>
       <ul>
-        <li
-          onClick={onSelectChat}
-          className="mb-2 cursor-pointer hover:bg-gray-700 p-3 rounded transition-all"
-        >
-          Hackathon Bot
-        </li>
-        <li
-          onClick={onSelectChat}
-          className="mb-2 cursor-pointer hover:bg-gray-700 p-3 rounded transition-all"
-        >
-          John Doe
-        </li>
+        {chatList.map((chat) => (
+          <li
+            key={chat.id}
+            onClick={() => onSelectChat(chat.id)}
+            className={`mb-2 p-3 rounded cursor-pointer transition-all hover:bg-gray-700 ${
+              chat.id === currentChatId ? "bg-gray-700" : ""
+            }`}
+          >
+            {chat.name}
+          </li>
+        ))}
       </ul>
     </div>
   );

@@ -8,20 +8,20 @@ const ChatMessage = ({ message, sender }) => {
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
-      className={`flex items-end ${isUser ? "justify-end" : "justify-start"} mb-2`}
+      className={`flex items-end ${isUser ? "justify-end" : "justify-start"} mb-3`}
     >
       {!isUser && (
         <img
           src="/bot-avatar.png"
-          alt="Bot"
-          className="w-8 h-8 rounded-full mr-2 shadow-md"
+          alt="Bot avatar"
+          className="w-8 h-8 rounded-full mr-2 shadow"
         />
       )}
       <div
-        className={`p-3 rounded-2xl text-sm max-w-[80%] leading-relaxed shadow ${
+        className={`p-3 max-w-[80%] text-sm rounded-2xl shadow leading-relaxed ${
           isUser
-            ? "bg-blue-500 text-white rounded-br-none"
-            : "bg-gray-200 text-gray-900 rounded-bl-none"
+            ? "bg-blue-600 text-white rounded-br-none"
+            : "bg-white text-gray-800 rounded-bl-none border border-gray-200"
         }`}
       >
         {message}
@@ -29,8 +29,8 @@ const ChatMessage = ({ message, sender }) => {
       {isUser && (
         <img
           src="/user-avatar.png"
-          alt="You"
-          className="w-8 h-8 rounded-full ml-2 shadow-md"
+          alt="User avatar"
+          className="w-8 h-8 rounded-full ml-2 shadow"
         />
       )}
     </motion.div>
